@@ -6,11 +6,11 @@ It is concepted to be as specialized for this case as possible for more accurate
 
 ## Pretrained model repository
 
-Pretrained models and the corresponding encoder for label conversion are available at: (https://github.com/someflow/degradedDoc)
+Pretrained models and the corresponding encoder for label conversion are available at: (https://drive.google.com/drive/folders/1LdJLTLEWIFK6Zc8lHAE9Ku2MXzqM2GC1?usp=sharing)
 
 ## Installation
 
-
+Not uploaded to any index yet
 
 ### Packages
 
