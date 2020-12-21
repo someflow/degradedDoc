@@ -6,7 +6,7 @@ It is concepted to be as specialized for this case as possible for more accurate
 
 ## Pretrained model repository
 
-Pretrained models and the corresponding encoder for label conversion are available at: (https://drive.google.com/drive/folders/1LdJLTLEWIFK6Zc8lHAE9Ku2MXzqM2GC1?usp=sharing)
+A pretrained model, its encoder and our training data are available at: (https://drive.google.com/drive/folders/1LdJLTLEWIFK6Zc8lHAE9Ku2MXzqM2GC1?usp=sharing)
 
 ## Installation
 
@@ -33,13 +33,13 @@ To use this package properly, you are also required to have working installation
 
 Installation guide: (https://tesseract-ocr.github.io/tessdoc/Installation.html)
 
-OCR engine used in this package as base.
+The base OCR engine used for text detection in this project.
 
 #### Poppler
 
 An installation guide can be found here, briefly at the top: (https://pypi.org/project/pdf2image/) 
 
-Required to used pdf2image package to enable pdf-input.
+Used for the pdf2image package, to enable PDF-input.
 
 #### Fontforge-Python
 
@@ -56,6 +56,7 @@ Required to use the training data generation script in case you want to train yo
 ## Usage example
 
 ```python
+#if you installed this as a package you will need to #import degradedDoc.degradedDoc
 import degradedDoc
 
 # Transcribe a file called  "sample.pdf" using the default set of arguments
@@ -73,12 +74,18 @@ transcript3 = degradedDoc.degradedDocOCR(inputfile = "image.png", retrain = 1, a
 degradedDoc.trainModel(custom_name = "newModel", width = 150, height = 150, architecture = "Xception", 
 										labelfile = "labels.txt", trainData = "dataset", numclasses = 77)
 ```
+## Training Data
 
-### Training Network
+You are required to prepare a set of training data to train a network with out script in a specific format, which is:
+
+* Character Images in PNG format numbered 1 to n, e.g. "1.png", "2.png", ..., "222.png"
+* Text file containing the true label for the character images whereas each line corresponds to the file name, e.g. if "1.png" is an image of "A" the first line of "labels.txt" should be just "A"
 
 ### Prepare training data
 
-Execute the trainingDataGen.py script using Fontforge's built in Python environment. For this also you are required to have a folder called "fonts" containing various TrueType-Font files from which you want to extract characters. In Ubuntu this can be done with:
+There is also a small script which fully prepares the training data for usage with our system. It requires fontforge to be used.
+
+Execute the trainingDataGen.py script using Fontforge's built in Python environment. For this also you are required to have a folder called "fonts" in your working directory containing various TrueType-Font files from which you want to extract characters. In Ubuntu this can be done with:
 
 ```bash
 ffpython trainingDataGen.py
